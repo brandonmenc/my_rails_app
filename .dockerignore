@@ -1,6 +1,8 @@
-.docker-sync
+.git
+.idea
+node_modules
 
-# Rails included .gitignore:
+# Rails .gitignore content below:
 
 # Ignore bundler config.
 /.bundle
@@ -16,7 +18,7 @@
 !/log/.keep
 !/tmp/.keep
 
-# Ignore uploaded files in development.
+# Ignore uploaded files in development
 /storage/*
 !/storage/.keep
 

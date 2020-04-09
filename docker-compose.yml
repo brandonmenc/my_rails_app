@@ -1,0 +1,67 @@
+version: "3.8"
+services:
+  postgres:
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+    image: postgres:12.2
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - db:/var/lib/postgresql/data
+  redis:
+    image: redis:5
+    volumes:
+      - redis:/data
+  spring:
+    build:
+      context: .
+    command: spring server
+    environment:
+      - RUBYOPT=-W:no-deprecated -W:no-experimental
+    env_file: .env
+    volumes:
+      - .:/app
+      - gems:/usr/local/bundle
+      - packs:/app/public/packs
+      - tmp:/app/tmp
+  web:
+    build:
+      context: .
+    command: tail -f /dev/null
+    depends_on:
+      - postgres
+      - redis
+      - webpacker
+    entrypoint: /app/entrypoint
+    environment:
+      - WEBPACKER_DEV_SERVER_HOST=webpacker
+    env_file: .env
+    ports:
+      - "${RAILS_PORT:-3000}:3000"
+      - "1234:1234"
+      - "26166:26168"
+    volumes:
+      - .:/app
+      - gems:/usr/local/bundle
+      - packs:/app/public/packs
+      - tmp:/app/tmp
+  webpacker:
+    build:
+      context: .
+    command: bin/webpack-dev-server
+    depends_on:
+      - postgres
+    environment:
+      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
+    env_file: .env
+    volumes:
+      - .:/app
+      - gems:/usr/local/bundle
+      - packs:/app/public/packs
+      - tmp:/app/tmp
+volumes:
+  db:
+  gems:
+  packs:
+  redis:
+  tmp:

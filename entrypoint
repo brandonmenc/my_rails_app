@@ -1,0 +1,5 @@
+#!/bin/sh
+
+rm /app/tmp/pids/server.pid 2> /dev/null
+
+exec "$@"
