@@ -1,5 +1,10 @@
 version: "3.8"
 services:
+  mailcatcher:
+    env_file: .env
+    image: sj26/mailcatcher
+    ports:
+      - "${MAILCATCHER_PORT:-1080}:1080"
   postgres:
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust
@@ -34,6 +39,7 @@ services:
       - webpacker
     entrypoint: /app/entrypoint
     environment:
+      - RUBYOPT=-W:no-deprecated -W:no-experimental
       - WEBPACKER_DEV_SERVER_HOST=webpacker
     env_file: .env
     ports:
@@ -52,6 +58,7 @@ services:
     depends_on:
       - postgres
     environment:
+      - RUBYOPT=-W:no-deprecated -W:no-experimental
       - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
     env_file: .env
     volumes:
