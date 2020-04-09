@@ -1,24 +1,76 @@
-# README
+A starting point for Rails development.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Instructions
 
-Things you may want to cover:
+First time run:
 
-* Ruby version
+```
+make
+```
 
-* System dependencies
+This will build everything and start it up. After this initial build, you can
+start and stop at will:
 
-* Configuration
+```
+make stop
+make start
+```
 
-* Database creation
+The application code is mounted into the container from your local machine so
+you don't need to rebuild the docker image every time you make a change, but
+if you want to rebuild the docker image:
 
-* Database initialization
+```
+make build
+make restart
+```
 
-* How to run the test suite
+If you install new gems:
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+make bundle-install
+```
 
-* Deployment instructions
+or npm packages:
 
-* ...
+```
+make yarn-install
+```
+
+Drop the db and recreate it:
+
+```
+make db-drop
+make db-create
+```
+
+Get a Rails console:
+
+```
+make console
+```
+
+Log into a shell:
+
+```
+make login
+```
+
+If you messed everything up and need to remake everything from scratch:
+
+```
+make nuke
+make
+```
+
+## Overriding ports and other environment variables
+
+Look in [.env](.env)
+
+## MailCatcher
+
+The app is configured to send all emails in development mode through an
+instance of [MailCatcher](https://mailcatcher.me) that is started along with
+the application when using docker-compose or the Makefile.
+
+You can visit [http://localhost:1080](http://localhost:1080) to view the emails.
