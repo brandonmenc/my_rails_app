@@ -1,12 +1,12 @@
-require_relative 'boot'
+require_relative "boot"
 
-require 'rails/all'
+require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
+# you"ve limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-require 'view_component/engine'
+require "view_component/engine"
 
 module App
   class Application < Rails::Application
