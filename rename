@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Rename the app
+#
+# Example:
+#
+#   ./rename old_name new_name
+#
+# replaces all instanaces of "old_name" with "new_name"
+
+set -e
+
+err() {
+  echo "Error: $*" >&2
+}
+
+oldname="$1"
+newname="$2"
+
+if [[ ! $(ack "${oldname}") ]]; then
+  err "${oldname} not found anywhere in project"
+  exit 1
+fi
+
+find . -not -path '*/\.git*' -type f -exec \
+     sed -i '' -e "s/${oldname}/${newname}/g" {} +
+
+git add -A
+git commit -m "Rename project to ${newname}"
+
+echo "Renamed project from ${oldname} to ${newname}"

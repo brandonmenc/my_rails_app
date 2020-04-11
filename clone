@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Clone the app and rename it.
+#
+# Example:
+#
+#   ./clone ~/src/new_app
+#
+# clones the app into ~/src/new_app and renames it to new_app.
+
+set -e
+
+err() {
+  echo "Error: $*" >&2
+}
+
+src="$(dirname "$(realpath "$0")")"
+dest="$1"
+curname="$(basename "${src}")"
+newname="$(basename "${dest}")"
+
+if [[ -d "${dest}" ]]; then
+  err "${dest} already exists"
+  exit 1
+fi
+
+git clone "${src}"/.git "${dest}"
+
+cd "${dest}"
+git branch -m master parent
+git checkout -b master
+./rename "${curname}" "${newname}"
+
+echo "Cloned project ${curname} from ${src} to project ${newname} at ${dest}"

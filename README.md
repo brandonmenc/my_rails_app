@@ -2,6 +2,18 @@ A starting point for Rails development.
 
 ## Instructions
 
+You'll probably want to clone the app and rename it:
+
+```
+./clone ~/src/new_app
+```
+
+This will clone the repo locally with `git` into the directory `~/src/new_app`
+and it will rename the app `new_app`. It will also create two branches: `parent`
+and `master`, with `master` branching off of `parent`. Do all of your work in
+`master` as you normally would. Pull changes from the template into `parent`
+and rebase `master` on `parent` as needed.
+
 First time run:
 
 ```
