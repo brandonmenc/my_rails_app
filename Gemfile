@@ -36,6 +36,7 @@ group :development do
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
 
+  # Our development gems
   gem "better_errors"
   gem "binding_of_caller"
 end
@@ -51,4 +52,5 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# Our gems
 gem "view_component"
