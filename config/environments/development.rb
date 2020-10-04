@@ -63,4 +63,7 @@ Rails.application.configure do
   # web-console
   config.web_console.permissions %w(10.0.0.0/8 172.16.0.0/12 192.168.0.0/16)
   config.web_console.whiny_requests = false
+
+  # Add Rack::LiveReload to the bottom of the middleware stack with the default options:
+  config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload, source: :vendored
 end

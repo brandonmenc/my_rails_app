@@ -1,5 +1,19 @@
 version: "3.8"
 services:
+  guard:
+    build:
+      context: .
+    command: bundle exec guard --no-interactions
+    environment:
+      - RUBYOPT=-W:no-deprecated -W:no-experimental
+    env_file: .env
+    ports:
+      - "${LIVERELOAD_PORT:-35729}:35729"
+    volumes:
+      - .:/app
+      - gems:/usr/local/bundle
+      - packs:/app/public/packs
+      - tmp:/app/tmp
   mailcatcher:
     env_file: .env
     image: sj26/mailcatcher
