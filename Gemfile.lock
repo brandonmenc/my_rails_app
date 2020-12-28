@@ -114,6 +114,10 @@ GEM
       guard (~> 2.8)
       guard-compat (~> 1.0)
       multi_json (~> 1.8)
+    hotwire-rails (0.1.2)
+      rails (>= 6.0.0)
+      stimulus-rails
+      turbo-rails
     http_parser.rb (0.6.0)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
@@ -221,8 +225,12 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
+    stimulus-rails (0.1.2)
+      rails (>= 6.0.0)
     thor (1.0.1)
     tilt (2.0.10)
+    turbo-rails (0.5.1)
+      rails (>= 6.0.0)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -263,6 +271,7 @@ DEPENDENCIES
   debase
   guard
   guard-livereload (~> 2.5)
+  hotwire-rails
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
   pg (~> 1.2.2)
