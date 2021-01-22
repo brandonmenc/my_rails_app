@@ -1,4 +1,4 @@
-FROM ruby:2.7-buster
+FROM ruby:2.7.2-buster
 
 RUN set -eux; \
     apt-get update; \
