@@ -59,6 +59,7 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "anycable-rails", "~> 1.0"
 gem "discard", "~> 1.2"
 gem "hotwire-rails"
+gem "pagy", "~> 3"
 # gem "pundit"
 gem "rack-attack"
 gem "view_component"
