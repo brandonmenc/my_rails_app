@@ -1,5 +1,24 @@
 version: "3.8"
 services:
+  anycable:
+    build:
+      context: .
+    command: bundle exec anycable
+    depends_on:
+      - websocket-server
+    environment:
+      - RUBYOPT=-W:no-deprecated -W:no-experimental
+      - ANYCABLE_REDIS_URL=redis://redis:6379/0
+      - ANYCABLE_RPC_HOST=0.0.0.0:50051
+      - ANYCABLE_DEBUG=1
+    env_file: .env
+    ports:
+      - "50051"
+    volumes:
+      - .:/app
+      - gems:/usr/local/bundle
+      - packs:/app/public/packs
+      - tmp:/app/tmp
   guard:
     build:
       context: .
@@ -80,6 +99,17 @@ services:
       - gems:/usr/local/bundle
       - packs:/app/public/packs
       - tmp:/app/tmp
+  websocket-server:
+    image: anycable/anycable-go:1.0
+    ports:
+      - '8080:8080'
+    environment:
+      - ANYCABLE_HOST=0.0.0.0
+      - ANYCABLE_REDIS_URL=redis://redis:6379/0
+      - ANYCABLE_RPC_HOST=anycable:50051
+      - ANYCABLE_DEBUG=1
+    depends_on:
+      - redis
 volumes:
   db:
   gems:

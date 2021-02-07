@@ -1,15 +1,11 @@
-default: &default
-  adapter: redis
-  url: <%= ENV.fetch("REDIS_URL", "redis://redis:6379/1") %>
-
+# Make it possible to switch adapters by passing the ACTION_CABLE_ADAPTER env variable.
+# For example, you can use it fallback to the standard Action Cable in staging/review
+# environments (by setting `ACTION_CABLE_ADAPTER=redis`).
 development:
-  <<: *default
-  channel_prefix: my_rails_app_development
+  adapter: <%= ENV.fetch("ACTION_CABLE_ADAPTER", "any_cable") %>
 
 test:
-  <<: *default
-  channel_prefix: my_rails_app_test
+  adapter: test
 
 production:
-  <<: *default
-  channel_prefix: my_rails_app_production
+  adapter: <%= ENV.fetch("ACTION_CABLE_ADAPTER", "any_cable") %>

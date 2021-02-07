@@ -56,5 +56,6 @@ end
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Our gems
+gem "anycable-rails", "~> 1.0"
 gem "hotwire-rails"
 gem "view_component"
