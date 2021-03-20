@@ -55,6 +55,10 @@ clean:
 clean-volumes:
 	-docker volume rm $(shell docker volume ls -q | grep $(app_name)_)
 
+.PHONY: clean-db-volume
+clean-db-volume:
+	-docker volume rm $(app_name)_db
+
 .PHONY: clean-images
 clean-images:
 	-docker image rm $(app_name)_$(service)
