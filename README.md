@@ -86,3 +86,11 @@ instance of [MailCatcher](https://mailcatcher.me) that is started along with
 the application when using docker-compose or the Makefile.
 
 You can visit [http://localhost:1080](http://localhost:1080) to view the emails.
+
+## TODO
+
+### Upgrade to Ruby 3
+
+Anycable doesn't work out of the box with Ruby 3 because protobufs needs to be
+built from source.
+[See this](https://docs.anycable.io/#/v1/troubleshooting?id=problems-with-docker-alpine-images).
