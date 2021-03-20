@@ -59,6 +59,10 @@ clean-volumes:
 clean-db-volume:
 	-docker volume rm $(app_name)_db
 
+.PHONY: clean-redis-volume
+clean-redis-volume:
+	-docker volume rm $(app_name)_redis
+
 .PHONY: clean-images
 clean-images:
 	-docker image rm $(app_name)_$(service)
