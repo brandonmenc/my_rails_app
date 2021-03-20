@@ -41,7 +41,7 @@ services:
   postgres:
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust
-    image: postgres:12.2
+    image: postgres:13.2
     ports:
       - "${POSTGRES_PORT:-5432}:5432"
     volumes:
