@@ -47,7 +47,7 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
   redis:
-    image: redis:5
+    image: redis:6.2
     volumes:
       - redis:/data
   spring:
