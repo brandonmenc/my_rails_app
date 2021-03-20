@@ -22,8 +22,6 @@ RUN set -eux; \
 
 RUN npm install --quiet -g yarn
 
-RUN gem install rails
-
 WORKDIR /app
 
 COPY Gemfile Gemfile.lock ./
